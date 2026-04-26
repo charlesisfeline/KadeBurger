@@ -1,0 +1,7 @@
+- [ ] add working scroll speed
+- [ ] add chart editor
+- [ ] add polymod support
+  - port scripting from funkin
+  - 
+- [ ] actually parsing v-slice, cne & legacy fnf charts
+- [ ] options menu
