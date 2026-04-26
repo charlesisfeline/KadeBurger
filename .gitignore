@@ -1,1 +1,3 @@
-Export/
+export/
+.vscode/
+.DS_STORE

@@ -11,7 +11,7 @@ import flixel.system.FlxSound;
 
 class PauseSubState extends FlxUISubState
 {
-    var optionNames:Array<String> = ['RESUME', 'RESTART', 'QUIT'];
+    var optionNames:Array<String> = ['RESUME', 'RESTART', 'OPTIONS', 'QUIT'];
 
     var _options:Array<FlxText> = [];
 
@@ -25,7 +25,7 @@ class PauseSubState extends FlxUISubState
 
     override function create()
     {
-        pauseMusic = new FlxSound().loadEmbedded('assets/music/pause.${TitleState.ext}', true, true);
+        pauseMusic = new FlxSound().loadEmbedded(Paths.music('pause'), true, true);
 		pauseMusic.volume = 0;
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
@@ -35,7 +35,7 @@ class PauseSubState extends FlxUISubState
         bg.alpha = 0.6;
         add(bg);
 
-        dev = new FlxSprite(880, FlxG.height).loadGraphic('assets/images/dude1.png');
+        dev = new FlxSprite(880, FlxG.height).loadGraphic(Paths.image('dude1'));
         dev.setGraphicSize(400);
         dev.updateHitbox();
         dev.flipX = true;
@@ -74,7 +74,7 @@ class PauseSubState extends FlxUISubState
 
         if (!tweeningKade) {
             tweeningKade = true;
-            FlxTween.tween(dev, {angle: FlxG.random.int(-10, 10)}, 1, {ease:FlxEase.circOut, onComplete: function (twn:FlxTween) tweeningKade = false});
+            FlxTween.tween(dev, {angle: FlxG.random.int(-10, 10)}, 1, {ease:FlxEase.circOut, onComplete: (twn:FlxTween) -> tweeningKade = false});
         }
 
         if (FlxG.keys.justPressed.ENTER || FlxG.keys.justPressed.SPACE)
@@ -87,6 +87,7 @@ class PauseSubState extends FlxUISubState
                     close();
                 case 'RESTART':
                     FlxG.resetState();
+                case 'RESTART': // TODO: ADD OPTIONS JUNK!!!
                 case 'QUIT':
                     FlxG.switchState(new TitleState());
             }

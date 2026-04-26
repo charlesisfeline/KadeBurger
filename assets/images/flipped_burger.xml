@@ -1,19 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="flipped_burger.png">
-	<!-- Created with Adobe Animate version 19.0.0.326 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="burgflip0000" x="0" y="0" width="160" height="126" frameX="0" frameY="-368" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0001" x="165" y="0" width="149" height="167" frameX="-106" frameY="-164" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0002" x="319" y="0" width="158" height="167" frameX="-195" frameY="0" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0003" x="0" y="172" width="127" height="160" frameX="-249" frameY="-48" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0004" x="132" y="172" width="151" height="167" frameX="-256" frameY="-155" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0005" x="288" y="172" width="161" height="130" frameX="-270" frameY="-270" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0006" x="0" y="344" width="143" height="96" frameX="-288" frameY="-330" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0007" x="0" y="344" width="143" height="96" frameX="-288" frameY="-330" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0008" x="0" y="344" width="143" height="96" frameX="-288" frameY="-330" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0009" x="0" y="344" width="143" height="96" frameX="-288" frameY="-330" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0010" x="0" y="344" width="143" height="96" frameX="-288" frameY="-330" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0011" x="0" y="344" width="143" height="96" frameX="-288" frameY="-330" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0012" x="0" y="344" width="143" height="96" frameX="-288" frameY="-330" frameWidth="431" frameHeight="494"/>
-	<SubTexture name="burgflip0013" x="0" y="344" width="143" height="96" frameX="-288" frameY="-330" frameWidth="431" frameHeight="494"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="flipped_burger.png" width="966" height="119">
+	<SubTexture name="burgflip0000" x="146" y="5" width="136" height="87" frameX="-10" frameY="-386" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0001" x="567" y="5" width="130" height="101" rotated="true" frameX="-130" frameY="-180" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0002" x="836" y="5" width="125" height="109" rotated="true" frameX="-221" frameY="-21" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0003" x="287" y="5" width="135" height="88" rotated="true" frameX="-270" frameY="-60" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0004" x="702" y="5" width="129" height="103" rotated="true" frameX="-280" frameY="-172" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0005" x="427" y="5" width="135" height="89" frameX="-282" frameY="-289" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0006" x="5" y="5" width="136" height="80" frameX="-290" frameY="-336" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0007" x="5" y="5" width="136" height="80" frameX="-290" frameY="-336" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0008" x="5" y="5" width="136" height="80" frameX="-290" frameY="-336" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0009" x="5" y="5" width="136" height="80" frameX="-290" frameY="-336" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0010" x="5" y="5" width="136" height="80" frameX="-290" frameY="-336" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0011" x="5" y="5" width="136" height="80" frameX="-290" frameY="-336" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0012" x="5" y="5" width="136" height="80" frameX="-290" frameY="-336" frameWidth="431" frameHeight="494"/>
+	<SubTexture name="burgflip0013" x="5" y="5" width="136" height="80" frameX="-290" frameY="-336" frameWidth="431" frameHeight="494"/>
 </TextureAtlas>

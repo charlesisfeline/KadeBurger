@@ -40,19 +40,25 @@ class PlayState extends FlxUIState
 
     private var paused:Bool = false;
 
-    override function create() // 185
+    override function create():Void
     {
-        add(new FlxSprite().loadGraphic('assets/images/kitch.png'));
-        add(new FlxSprite(97, 431).loadGraphic('assets/images/belt.png'));
-        var blu:FlxSprite = new FlxSprite(97, 431).loadGraphic('assets/images/belt.png');
+        add(new FlxSprite().loadGraphic(Paths.image('kitch')));
+
+        var belt:FlxSprite = new FlxSprite(97, 431).loadGraphic(Paths.image('belt'));
+        add(belt);
+
+        var blu:FlxSprite = new FlxSprite(97, 431).loadGraphic(Paths.image('belt'));
         blu.color = FlxColor.BLUE;
         blu.alpha = 0.5;
         add(blu);
-        var dark:FlxSprite = new FlxSprite(97, 431).loadGraphic('assets/images/belt.png');
+
+        var dark:FlxSprite = new FlxSprite(97, 431).loadGraphic(Paths.image('belt'));
         dark.color = FlxColor.BLACK;
         dark.alpha = 0.9;
         add(dark);
-        add(new FlxSprite(-516, 546).loadGraphic('assets/images/belt.png'));
+
+        var belt2:FlxSprite = new FlxSprite(-516, 546).loadGraphic(Paths.image('belt'));
+        add(belt2);
 
         flipping_burgers = new FlxTypedGroup<FlxSprite>();
         add(flipping_burgers);
@@ -60,9 +66,9 @@ class PlayState extends FlxUIState
         kade = new KadeDev(FlxG.width - 818 + 100, FlxG.height - 755 + 100);
         add(kade);
 
-        FlxG.sound.playMusic('assets/music/song.${TitleState.ext}');
+        FlxG.sound.playMusic(Paths.music('song'));
         FlxG.sound.music.looped = false;
-        FlxG.sound.music.onComplete = function() FlxG.switchState(new TitleState());
+        FlxG.sound.music.onComplete = () -> FlxG.switchState(new TitleState());
 
         burgers = new FlxTypedGroup<Burger>();
         add(burgers);
@@ -80,7 +86,7 @@ class PlayState extends FlxUIState
 
         for (i in 0...3)
         {
-            var thing:FlxSprite = new FlxSprite(25, 150 * i).loadGraphic('assets/images/burgIcons.png', true, 295, 332);
+            var thing:FlxSprite = new FlxSprite(25, 150 * i).loadGraphic(Paths.image('burgIcons'), true, 295, 332);
             thing.animation.add('idle', [0], 0, false);
             thing.animation.add('lose', [1], 0, false);
             thing.animation.play('idle');
@@ -99,12 +105,12 @@ class PlayState extends FlxUIState
     {
         Conductor.songPosition = FlxG.sound.music.time;
 
-        burgers.forEachAlive(function(burger:Burger){
+        burgers.forEachAlive((burger:Burger) -> {
             burger.x = (Burger.offsetX + (Conductor.songPosition - burger.flipTime) * (0.45 * FlxMath.roundDecimal(_song.speed, 2)));
 
             if (burger.x > 1280) missBurg(burger);
 
-            if (FlxG.keys.justPressed.SPACE && !paused) {
+            if (FlxG.keys.justPressed.SPACE && !paused) { // TODO: KEYBIND SUPPORT GAHHHH
                 kade.animation.play('flip', true);
                 kade.offset.set(89, 67);
                 if (burger.canBeFlipped && !burger.tooLate)
@@ -114,7 +120,7 @@ class PlayState extends FlxUIState
 
         for (burg in burgsFlipped)
         {
-            burg.x += #if web 6 #else 3 #end;
+            burg.x += #if web 6 #else 3 #end; // TODO: SCROLL SPEED SUPPORT
             if (burg.x > 1280) {
                 burgsFlipped.remove(burg);
                 burg.kill();
@@ -122,9 +128,7 @@ class PlayState extends FlxUIState
         }
 
         for (thing in missCounter)
-        {
             thing.animation.play(missCounter.indexOf(thing) < missed ? 'lose' : 'idle');
-        }
 
         if (Conductor.songPosition > lastStep + Conductor.stepCrochet - Conductor.safeZoneOffset // we are NOT going to talk about how this is sto- I mean uhh """borrowed""" from FNF.
 			|| Conductor.songPosition < lastStep + Conductor.safeZoneOffset)
@@ -173,12 +177,10 @@ class PlayState extends FlxUIState
 
     public static function loadSong(song:String):KadeDevsTunes
     {
-        var rawJson = Assets.getText('assets/data/$song.json').trim();
+        var rawJson = Assets.getText(Paths.json('$song.json')).trim();
 
 		while (!rawJson.endsWith("}"))
-		{
 			rawJson = rawJson.substr(0, rawJson.length - 1);
-		}
 
         return cast Json.parse(rawJson).song;
     }
@@ -186,7 +188,7 @@ class PlayState extends FlxUIState
     private function flipBurger(burger:Burger):Void
     {
         var flip:FlxSprite = new FlxSprite(kade.x + 75, kade.y + 75);
-        flip.frames = FlxAtlasFrames.fromSparrow('assets/images/flipped_burger.png', 'assets/images/flipped_burger.xml');
+        flip.frames = Paths.getSparrowAtlas('flipped_burger');
         flip.animation.addByPrefix('idle', 'burgflip', 24, false);
         flip.animation.play('idle');
         flip.animation.finishCallback = function(s:String) burgsFlipped.push(flip);
@@ -242,5 +244,6 @@ class PlayState extends FlxUIState
 typedef KadeDevsTunes = {
     var burgTimes:Array<Float>;
     var speed:Float;
-    var bpm:Int;
+    var bpm:Float;
+    var song:String;
 }

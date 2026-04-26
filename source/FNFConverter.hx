@@ -20,6 +20,7 @@ typedef FunkinSong = {
     var notes:Array<FunkinSection>;
     var bpm:Float;
     var speed:Float;
+	var song:String;
 }
 
 class FNFConverter
@@ -31,29 +32,25 @@ class FNFConverter
     public static function convert(song:String, destination:String = '')
     {
         _song = {
+		    "name": "Tutorial",
             "burgTimes": [],
             "speed": 1,
             "bpm": 100
         }
         pooping = [];
-        var rawJson = File.getContent('assets/data/$song.json').trim();
+        var rawJson = File.getContent(Paths.json('$song.json')).trim();
 
 		while (!rawJson.endsWith("}"))
-		{
 			rawJson = rawJson.substr(0, rawJson.length - 1);
-		}
 
         var song1:FunkinSong = cast Json.parse(rawJson).song;
 
         for (i in song1.notes)
-        {
             for (ii in i.sectionNotes)
-            {
                 pooping.push(ii[0]);
-            }
-        }
 
         _song.burgTimes = pooping;
+		_song.name = song1.song;
         _song.speed = song1.speed;
         _song.bpm = Std.int(song1.bpm);
 

@@ -2,6 +2,7 @@
     "song": {
         "speed": 1.4,
         "bpm": 115,
+        "name": "KadeDev's Groove",
         "burgTimes": [
             4173.91304347826,
             5217.39130434783,

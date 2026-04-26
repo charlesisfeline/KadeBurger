@@ -14,19 +14,20 @@ import openfl.Assets;
 class TitleState extends FlxUIState
 {
     var kade:KadeDev;
+    
     static var initialized:Bool = false;
 
     public static var ext:String = #if web 'mp3' #else 'ogg'#end ;
 
     override function create()
     {
-        add(new FlxSprite().loadGraphic('assets/images/kitch.png'));
+        add(new FlxSprite().loadGraphic(Paths.image('kitch')));
 
-        var logo:FlxSprite = new FlxSprite().loadGraphic('assets/images/logo.png');
+        var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
         logo.angle = -10;
         add(logo);
 
-        var burger:FlxSprite = new FlxSprite(70, 275).loadGraphic('assets/images/3dBurger.png', true, 480, 480);
+        var burger:FlxSprite = new FlxSprite(70, 275).loadGraphic(Paths.image('3dBurger'), true, 480, 480);
         burger.animation.add('spin', [for (i in 0...45) i], 24, true);
         burger.animation.play('spin');
         add(burger);
@@ -37,9 +38,9 @@ class TitleState extends FlxUIState
         kade.antialiasing = true;
         add(kade);
 
-        FlxG.mouse.visible = false;
+        FlxG.mouse.visible = #if debug true #else false #end;
 
-        FlxG.sound.playMusic('assets/music/title.$ext');
+        FlxG.sound.playMusic(Paths.music(title));
 
         super.create();
 
@@ -51,22 +52,22 @@ class TitleState extends FlxUIState
     {
         kade.animation.play('idle', false);
 
-        if (FlxG.keys.justPressed.ENTER) {
+        if (FlxG.keys.justPressed.ENTER) 
+        {
             FlxG.sound.music.stop();
+
             FlxG.switchState(new PlayState());
         }
 
-        #if !web
         if (FlxG.keys.justPressed.SEVEN)
-            FNFConverter.convert(Assets.getText('assets/data/SONG_TO_CONVERT.txt'));
-        #end
+            FNFConverter.convert(Assets.getText(Paths.txt("SONG_TO_CONVERT.txt")));
         
         super.update(t);
     }
 
     function init():Void
     {
-		var diamond:FlxGraphic = FlxGraphic.fromAssetKey('assets/images/burger.png');
+		var diamond:FlxGraphic = FlxGraphic.fromAssetKey(Paths.image('burger'));
 		diamond.persist = true;
 		diamond.destroyOnNoUse = false;
 
